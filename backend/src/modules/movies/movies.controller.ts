@@ -29,7 +29,30 @@ export class MoviesController {
     try {
       const page = parseInt(req.query.page as string) || 1;
       const perPage = parseInt(req.query.perPage as string) || 10;
-      const result = await MoviesService.findAll(req.userId!, page, perPage);
+
+      const filters: {
+        search?: string;
+        releaseStart?: string;
+        releaseEnd?: string;
+        minDuration?: number;
+        maxDuration?: number;
+        genre?: string;
+      } = {};
+
+      if (req.query.search) filters.search = req.query.search as string;
+      if (req.query.releaseStart) filters.releaseStart = req.query.releaseStart as string;
+      if (req.query.releaseEnd) filters.releaseEnd = req.query.releaseEnd as string;
+      if (req.query.minDuration) filters.minDuration = Number(req.query.minDuration);
+      if (req.query.maxDuration) filters.maxDuration = Number(req.query.maxDuration);
+      if (req.query.genre) filters.genre = req.query.genre as string;
+
+      const result = await MoviesService.findAll(
+        req.userId!,
+        page,
+        perPage,
+        filters
+      );
+
       res.json(result);
     } catch (err: any) {
       res.status(400).json({ error: err.message || "Erro ao listar filmes" });
@@ -79,7 +102,9 @@ export class MoviesController {
       );
       res.status(201).json(image);
     } catch (err: any) {
-      res.status(400).json({ error: err.message || "Erro ao adicionar imagem" });
+      res
+        .status(400)
+        .json({ error: err.message || "Erro ao adicionar imagem" });
     }
   }
 
@@ -94,7 +119,9 @@ export class MoviesController {
       );
       res.json(image);
     } catch (err: any) {
-      res.status(400).json({ error: err.message || "Erro ao atualizar imagem" });
+      res
+        .status(400)
+        .json({ error: err.message || "Erro ao atualizar imagem" });
     }
   }
 

@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { MovieGenre } from "@prisma/client";
 import { IMovie } from "./movies.types";
 
 const prisma = new PrismaClient();
@@ -47,15 +48,68 @@ export class MoviesService {
     return updatedMovie;
   }
 
-  static async findAll(userId: number, page = 1, perPage = 10) {
+  static async findAll(
+    userId: number,
+    page = 1,
+    perPage = 10,
+    filters?: {
+      search?: string;
+      releaseStart?: string;
+      releaseEnd?: string;
+      minDuration?: number;
+      maxDuration?: number;
+      genre?: string; // filtro extra
+    }
+  ) {
     const skip = (page - 1) * perPage;
+
+    const where: any = { userId };
+
+    // Busca por texto (título ou descrição)
+    if (filters?.search) {
+      where.OR = [
+        { title: { contains: filters.search, mode: "insensitive" } },
+        { description: { contains: filters.search, mode: "insensitive" } },
+      ];
+    }
+
+    // Filtro por data de lançamento
+    if (filters?.releaseStart || filters?.releaseEnd) {
+      where.releaseDate = {};
+      if (filters.releaseStart) {
+        where.releaseDate.gte = new Date(filters.releaseStart);
+      }
+      if (filters.releaseEnd) {
+        where.releaseDate.lte = new Date(filters.releaseEnd);
+      }
+    }
+
+    // Filtro por duração
+    if (filters?.minDuration || filters?.maxDuration) {
+      where.duration = {};
+      if (filters.minDuration) {
+        where.duration.gte = filters.minDuration;
+      }
+      if (filters.maxDuration) {
+        where.duration.lte = filters.maxDuration;
+      }
+    }
+
+    // Filtro extra (exemplo: gênero)
+    if (filters?.genre) {
+      where.genres = { has: filters.genre as MovieGenre };
+    }
+
     const movies = await prisma.movie.findMany({
-      where: { userId },
+      where,
       skip,
       take: perPage,
       include: { images: true },
+      orderBy: { releaseDate: "desc" },
     });
-    const total = await prisma.movie.count({ where: { userId } });
+
+    const total = await prisma.movie.count({ where });
+
     return { movies, total, page, perPage };
   }
 

@@ -21,7 +21,7 @@ model Movie {
   title              String
   originalTitle      String?
   description        String?
-  genres             String?
+  genres             MovieGenre[]
   popularity         Int?      @default(0)
   voteCount          Int?      @default(0)
   releaseDate        DateTime
@@ -59,4 +59,26 @@ model ReleaseEmailSchedule {
   sent     Boolean  @default(false)
 
   movie    Movie    @relation(fields: [movieId], references: [id])
+}
+
+enum MovieGenre {
+  ACTION
+  ADVENTURE
+  ANIMATION
+  COMEDY
+  CRIME
+  DOCUMENTARY
+  DRAMA
+  FAMILY
+  FANTASY
+  HISTORY
+  HORROR
+  MUSIC
+  MYSTERY
+  ROMANCE
+  SCIENCE_FICTION
+  TV_MOVIE
+  THRILLER
+  WAR
+  WESTERN
 }

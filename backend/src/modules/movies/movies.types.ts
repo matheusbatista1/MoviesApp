@@ -1,8 +1,10 @@
+import { MovieGenre } from "@prisma/client";
+
 export interface IMovie {
   title: string;
   originalTitle?: string;
   description?: string;
-  genres?: string;
+  genres?: MovieGenre[]; // agora é enum array
   popularity?: number;
   voteCount?: number;
   releaseDate: Date;

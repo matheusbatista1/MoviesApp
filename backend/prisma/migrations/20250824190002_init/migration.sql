@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "public"."MovieGenre" AS ENUM ('ACTION', 'ADVENTURE', 'ANIMATION', 'COMEDY', 'CRIME', 'DOCUMENTARY', 'DRAMA', 'FAMILY', 'FANTASY', 'HISTORY', 'HORROR', 'MUSIC', 'MYSTERY', 'ROMANCE', 'SCIENCE_FICTION', 'TV_MOVIE', 'THRILLER', 'WAR', 'WESTERN');
+
 -- CreateTable
 CREATE TABLE "public"."User" (
     "id" SERIAL NOT NULL,
@@ -15,7 +18,7 @@ CREATE TABLE "public"."Movie" (
     "title" TEXT NOT NULL,
     "originalTitle" TEXT,
     "description" TEXT,
-    "genres" TEXT,
+    "genres" "public"."MovieGenre"[],
     "popularity" INTEGER DEFAULT 0,
     "voteCount" INTEGER DEFAULT 0,
     "releaseDate" TIMESTAMP(3) NOT NULL,
