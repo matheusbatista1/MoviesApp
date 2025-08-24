@@ -2,10 +2,26 @@
 
 ### Pré-requisitos
 
-Para começar, certifique-se de ter o **Node.js** e o **npm** instalados em sua máquina.
-
+Para começar, certifique-se de ter o **Docker**, **Node.js** e o **npm** instalados em sua máquina, pois o projeto utiliza **Docker** para rodar o banco de dados.
+-   **Docker**: É necessário para rodar o banco de dados.
 -   **Node.js**: `22.16.0`
 -   **npm**: `10.9.2`
+
+---
+
+### 💻 Stacks Utilizadas
+
+Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
+
+#### **Backend**
+
+* **Linguagem:** TypeScript
+* **Framework:** Express.js
+* **Banco de Dados:** PostgreSQL (rodando via Docker)
+* **ORM:** Prisma
+* **Armazenamento de Arquivos:** AWS S3
+* **Envio de Emails:** Ethereal
+* **Virtualização:** Docker
 
 ---
 
