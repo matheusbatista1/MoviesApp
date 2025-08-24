@@ -23,6 +23,11 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 * **Envio de Emails:** Ethereal
 * **Virtualização:** Docker
 
+#### **Frontend**
+
+* **Framework:** React
+* **Estilização:** Tailwind CSS
+  
 ---
 
 ### Configuração do Ambiente 🔧
