@@ -32,9 +32,9 @@ export class UsersService {
       expiresIn: "1d",
     });
 
-    newUser.password = undefined;
+    const { password: _password, ...userWithoutPassword } = newUser;
 
-    return { user: newUser, token };
+    return { user: userWithoutPassword, token };
   }
 
   static async login(email: string, password: string) {
@@ -48,13 +48,15 @@ export class UsersService {
       expiresIn: "1d",
     });
 
-    user.password = undefined;
-    return { user, token };
+    const { password: _password, ...userWithoutPassword } = user;
+    return { user: userWithoutPassword, token };
   }
 
   static async findById(id: number) {
     const user = await prisma.user.findUnique({ where: { id } });
-    if (user) user.password = undefined;
-    return user;
+    if (!user) return null;
+
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 }
