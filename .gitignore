@@ -1,0 +1,65 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+/tmp/
+*.tmp
+*.pid
+*.seed
+
+# Runtime data
+pids/
+*.pid.lock
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Prisma
+prisma/migrations/**/migration.sql
+prisma/dev.db          # caso use SQLite local
+prisma/.migrate/
+node_modules/@prisma/client
+prisma/generated/      # client gerado
+
+# Build outputs
+dist/
+build/
+out/
+!.gitkeep
+
+# React / Next.js
+.next/
+*.cache/
+*.swp
+
+# Tailwind / PostCSS
+tailwind.config.js
+postcss.config.js
+
+# Docker
+docker-compose.override.yml
+volumes/
+
+# IDEs
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
