@@ -1,0 +1,84 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  movies    Movie[]
+}
+
+model Movie {
+  id                 Int       @id @default(autoincrement())
+  title              String
+  originalTitle      String?
+  description        String?
+  genres             MovieGenre[]
+  popularity         Int?      @default(0)
+  voteCount          Int?      @default(0)
+  releaseDate        DateTime
+  duration           Int
+  status             String?
+  language           String?
+  budget             Float?
+  revenue            Float?
+  profit             Float?
+  voteAverage        Float?
+  trailerUrl         String?
+  userId             Int
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  user               User      @relation(fields: [userId], references: [id])
+  images             MovieImage[]
+  releaseEmails      ReleaseEmailSchedule[]
+}
+
+model MovieImage {
+  id        Int     @id @default(autoincrement())
+  url       String
+  type      String
+  movieId   Int
+  createdAt DateTime @default(now())
+
+  movie     Movie   @relation(fields: [movieId], references: [id])
+}
+
+model ReleaseEmailSchedule {
+  id       Int      @id @default(autoincrement())
+  movieId  Int
+  sendAt   DateTime
+  sent     Boolean  @default(false)
+
+  movie    Movie    @relation(fields: [movieId], references: [id])
+}
+
+enum MovieGenre {
+  ACTION
+  ADVENTURE
+  ANIMATION
+  COMEDY
+  CRIME
+  DOCUMENTARY
+  DRAMA
+  FAMILY
+  FANTASY
+  HISTORY
+  HORROR
+  MUSIC
+  MYSTERY
+  ROMANCE
+  SCIENCE_FICTION
+  TV_MOVIE
+  THRILLER
+  WAR
+  WESTERN
+}
