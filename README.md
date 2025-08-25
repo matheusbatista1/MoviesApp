@@ -3,9 +3,9 @@
 ### Pré-requisitos
 
 Para começar, certifique-se de ter o **Docker**, **Node.js** e o **npm** instalados em sua máquina, pois o projeto utiliza **Docker** para rodar o banco de dados.
--   **Docker**: É necessário para rodar o banco de dados.
--   **Node.js**: `22.16.0`
--   **npm**: `10.9.2`
+- **Docker**: É necessário para rodar o banco de dados.
+- **Node.js**: `22.16.0`
+- **npm**: `10.9.2`
 
 ---
 
@@ -26,28 +26,31 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 #### **Frontend**
 
 * **Framework:** React
+* **Build Tool:** Vite
 * **Estilização:** Tailwind CSS
-  
+  
 ---
 
 ### Configuração do Ambiente 🔧
 
 Primeiro, você precisará configurar suas variáveis de ambiente.
 
-1.  Crie um arquivo `.env` na raiz do projeto.
-2.  Copie o conteúdo do arquivo `.env.example` para o seu novo arquivo `.env`.
-3.  Preencha as informações necessárias.
+1. Crie um arquivo `.env` na raiz do projeto.
+2. Copie o conteúdo do arquivo `.env.example` para o seu novo arquivo `.env`.
+3. Preencha as informações necessárias.
 
 As variáveis que você precisa definir são:
 
--   `ETHEREAL_USER` e `ETHEREAL_PASS`: Credenciais para o serviço de e-mail Ethereal.
--   `POSTGRES_DB`, `POSTGRES_USER` e `POSTGRES_PASSWORD`: Credenciais do seu banco de dados PostgreSQL.
--   `DATABASE_URL`: String de conexão para o seu banco de dados.
--   `JWT_SECRET`: Uma chave secreta para os JSON Web Tokens.
--   `PORT`: A porta na qual a aplicação será executada (o padrão é `3000`).
--   `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET_NAME`, `AWS_S3_ENDPOINT`: Credenciais da **AWS S3** para armazenamento de arquivos.
+- `ETHEREAL_USER` e `ETHEREAL_PASS`: Credenciais para o serviço de e-mail Ethereal.
+- `POSTGRES_DB`, `POSTGRES_USER` e `POSTGRES_PASSWORD`: Credenciais do seu banco de dados PostgreSQL.
+- `DATABASE_URL`: String de conexão para o seu banco de dados.
+- `JWT_SECRET`: Uma chave secreta para os JSON Web Tokens.
+- `PORT`: A porta na qual a aplicação será executada (o padrão é `3000`).
+- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET_NAME`, `AWS_S3_ENDPOINT`: Credenciais da **AWS S3** para armazenamento de arquivos.
 
 **Exemplo do arquivo `.env`:**
+
+**Keys de acesso da AWS adicionadas para facilitar os testes**
 
 ```ini
 ETHEREAL_USER="SEU_ETHEREAL_USER"
@@ -62,26 +65,46 @@ DATABASE_URL="postgresql://postgres:postgres123@host.docker.internal:5433/movies
 JWT_SECRET="SEU_JWT_SECRET"
 PORT=3000
 
-AWS_ACCESS_KEY_ID="SUA_CHAVE_DE_ACESSO_AWS"
-AWS_SECRET_ACCESS_KEY="SUA_CHAVE_SECRETA_AWS"
-AWS_REGION="SUA_REGIAO_AWS"
-AWS_BUCKET_NAME="SEU_NOME_DO_BUCKET_AWS"
-AWS_S3_ENDPOINT="SEU_ENDPOINT_S3_AWS"
+AWS_ACCESS_KEY_ID="AKIAY7TN6YHL7ALUZYQI"
+AWS_SECRET_ACCESS_KEY="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"
+AWS_REGION=us-east-2
+AWS_BUCKET_NAME=moviesapp-api-images
+AWS_S3_ENDPOINT="https://s3.us-east-2.amazonaws.com"
 ```
 
-### Instalação e Configuração ⚙️
+### Como Rodar o Projeto ⚙️
 
-Com o ambiente configurado, você pode instalar as dependências e configurar o projeto.
+Para rodar a aplicação, siga as instruções para o **backend** e o **frontend** separadamente.
 
-1.  Execute o seguinte comando para instalar todos os pacotes necessários:
+#### Backend
+
+1. Na raiz do projeto, acesse a pasta `backend`:
+   ```bash
+   cd backend
+    ```
+2.  Instale as dependências:
     ```bash
     npm install
     ```
-2.  Após a instalação, execute o script de configuração para preparar o banco de dados e a aplicação:
+3.  Execute o script de setup para configurar o banco de dados e a aplicação:
     ```bash
     npm run setup
     ```
 
+#### Frontend
+
+1. Na raiz do projeto, acesse a pasta `frontend`:
+   ```bash
+   cd frontend
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Execute o script de setup para configurar o banco de dados e a aplicação:
+    ```bash
+    npm run dev
+    ```
 ---
 
 ### Gerenciamento do Banco de Dados 📊
@@ -93,3 +116,14 @@ Para explorar o esquema e os dados do banco de dados, você pode usar o Prisma S
     npx prisma studio
     ```
 Este comando fornece uma interface visual para gerenciar o conteúdo do seu banco de dados.
+
+
+---
+
+### 📝 Pontos Pendentes
+
+Alguns pontos ficaram pendentes para a finalização do projeto e podem ser adicionados em futuras atualizações:
+
+* **Tema Claro**: Implementação de um tema claro para o frontend.
+* **Responsividade**: Melhoria na responsividade da tela de detalhes de filmes.
+* **Ajustes na Edição**: Otimização e ajustes na funcionalidade de edição de filmes.
