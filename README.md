@@ -20,7 +20,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 * **Banco de Dados:** PostgreSQL (rodando via Docker)
 * **ORM:** Prisma
 * **Armazenamento de Arquivos:** AWS S3
-* **Envio de Emails:** Ethereal
+* **Envio de Emails:** Ethereal ```https://ethereal.email/``` **Necessário para inserir credenciais no .env e acompanhar os envios.**
 * **Virtualização:** Docker
 
 #### **Frontend**
