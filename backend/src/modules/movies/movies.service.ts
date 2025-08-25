@@ -6,9 +6,14 @@ const prisma = new PrismaClient();
 
 export class MoviesService {
   static async create(movieData: IMovie, userId: number) {
+
+    const releaseDate = new Date(movieData.releaseDate);
+    
     const movie = await prisma.movie.create({
       data: { ...movieData, userId },
     });
+
+    movie.releaseDate = releaseDate;
 
     if (movie.releaseDate > new Date()) {
       await prisma.releaseEmailSchedule.create({

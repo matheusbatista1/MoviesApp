@@ -24,8 +24,15 @@ export class UsersService {
     }
 
     const hashedPassword = await hashPassword(user.password);
+    
+    const userData = {
+      name: user.name,
+      email: user.email,
+      password: hashedPassword,
+    };
+
     const newUser = await prisma.user.create({
-      data: { ...user, password: hashedPassword },
+      data: userData,
     });
 
     const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET as string, {

@@ -49,7 +49,7 @@ model MovieImage {
   movieId   Int
   createdAt DateTime @default(now())
 
-  movie     Movie   @relation(fields: [movieId], references: [id])
+  movie   Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
 }
 
 model ReleaseEmailSchedule {
@@ -58,7 +58,7 @@ model ReleaseEmailSchedule {
   sendAt   DateTime
   sent     Boolean  @default(false)
 
-  movie    Movie    @relation(fields: [movieId], references: [id])
+  movie   Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
 }
 
 enum MovieGenre {
