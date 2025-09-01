@@ -65,11 +65,11 @@ DATABASE_URL="postgresql://postgres:postgres123@host.docker.internal:5433/movies
 JWT_SECRET="SEU_JWT_SECRET"
 PORT=3000
 
-AWS_ACCESS_KEY_ID="AKIAY7TN6YHL7ALUZYQI"
-AWS_SECRET_ACCESS_KEY="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"
-AWS_REGION=us-east-2
-AWS_BUCKET_NAME=moviesapp-api-images
-AWS_S3_ENDPOINT="https://s3.us-east-2.amazonaws.com"
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_REGION=
+AWS_BUCKET_NAME=
+AWS_S3_ENDPOINT=""
 ```
 
 ### Como Rodar o Projeto ⚙️
